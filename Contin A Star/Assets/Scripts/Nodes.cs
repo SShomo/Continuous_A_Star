@@ -10,29 +10,12 @@ public class Nodes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentTile = new Tile();
+        currentTile = TileManager.instance.getTile(transform.position);
     }
 
     private void Update()
     {
-        floorX = Mathf.FloorToInt(transform.position.x);
-        floorY = Mathf.FloorToInt(transform.position.y);
-        if (transform.position.x - floorX <= 0.5f)
-        {
-            currentTile.currentPos.x = floorX;
-        }
-        else
-        {
-            currentTile.currentPos.x = floorX + 1;
-        }
-        if (transform.position.y - floorY <= 0.5f)
-        {
-            currentTile.currentPos.y = floorY;
-        }
-        else
-        {
-            currentTile.currentPos.y = floorY + 1;
-        }
+        currentTile = TileManager.instance.getTile(transform.position);
 
         Debug.Log(currentTile.currentPos);
     }
