@@ -18,7 +18,6 @@ public class TileManager : MonoBehaviour
             map = new Dictionary<(float, float), Tile>();
     }
 
-
     public Tile getTile(Vector2 vec)
     {
         Vector2 tilePos = VecToTilePos(vec);
@@ -27,8 +26,6 @@ public class TileManager : MonoBehaviour
         {
             map.Add((tilePos.x, tilePos.y), CreateTile(tilePos));
         }
-
-        Debug.Log(map.Count);
 
         return map[(tilePos.x, tilePos.y)];
     }
@@ -48,6 +45,7 @@ public class TileManager : MonoBehaviour
 
     private Vector2 VecToTilePos(Vector2 vec)
     {
+        //cast?
         Vector2Int floor = Vector2Int.FloorToInt(vec);
         Vector2 originOffset = vec - floor;
 
