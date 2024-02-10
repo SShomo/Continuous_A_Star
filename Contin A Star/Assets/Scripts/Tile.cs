@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,4 +28,7 @@ public class Tile
         }
         return false;
     }
+
+    public int GetWeight() { return weight; }
+    public void SetWeight(int v) { weight = v; }
 }

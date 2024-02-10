@@ -8,11 +8,11 @@ public class Node : MonoBehaviour
 
     void Start()
     {
-        currentTile = TileManager.instance.getTile(transform.position);
+        currentTile = TileManager.instance.GetTile(transform.position);
     }
 
     private void Update()
     {
-        currentTile = TileManager.instance.getTile(transform.position);
+        currentTile = TileManager.instance.GetTile(transform.position);
     }
 }

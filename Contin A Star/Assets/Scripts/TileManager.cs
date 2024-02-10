@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TileManager : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class TileManager : MonoBehaviour
             map = new Dictionary<(float, float), Tile>();
     }
 
-    public Tile getTile(Vector2 vec)
+    public Tile GetTile(Vector2 vec)
     {
         Vector2 tilePos = VecToTilePos(vec);
 
@@ -30,13 +31,27 @@ public class TileManager : MonoBehaviour
         return map[(tilePos.x, tilePos.y)];
     }
 
-    public Tile CreateTile(Vector2 tilePos)
+    public void ToggleWall(Vector2 vec)
+    {
+        Tile tile = GetTile(vec);
+
+        if(tile.GetWeight() == 0)
+        {
+            tile.SetWeight(1);
+        }
+        else
+        {
+            tile.SetWeight(0);
+        }
+    }
+
+    private Tile CreateTile(Vector2 tilePos)
     {
         Tile temp = new Tile(tilePos);
         
         return temp;
     }
-    public Tile CreateTile(Vector2 tilePos, int weight)
+    private Tile CreateTile(Vector2 tilePos, int weight)
     {
         Tile temp = new Tile(tilePos, weight);
 
