@@ -4,13 +4,16 @@ using System.Linq;
 using System.Numerics;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.UI;
 using Vector2 = UnityEngine.Vector2;
 
 
 public class AStar : MonoBehaviour
 {
+
     Node source = new Node();
     Node des = new Node();
+
     public List<Node> generatePath()
     {
         Dictionary<Node, Node> cameFrom; // to build the flowfield and build the path
