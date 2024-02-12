@@ -59,9 +59,12 @@ public class AStar : MonoBehaviour
             // iterate over the neighs:
             foreach(Node node in neigh)
             {
-                if (frontierSet.Contains(node.currentTile.currentPos) == frontierSet.Last())
+                Vector2 returnVec;
+                frontierSet.TryGetValue(node.currentTile.currentPos, out returnVec);
+                if (returnVec == frontierSet.Last())
                 {
                     //int e = cost
+                    
                     //if(frontierSet.find(var))
                     cameFrom[node] = current; // for every neighbor set the cameFrom
                                                    // enqueue the neighbors to frontier and frontierset
@@ -93,7 +96,7 @@ public class AStar : MonoBehaviour
     }
 
     //assumes that we only have walls, if we make more comprehensive weights we will also need to change this accordingly
-    List<Node> getVisitableNeighbors(Node current, HashSet<Vector2> existingSet)
+    public List<Node> getVisitableNeighbors(Node current, HashSet<Vector2> existingSet)
     {
         List<Tile> validTileNeighbors = current.currentTile.GetNeighbors();
         List<Node> validNodeNeighbors = new List<Node>();
@@ -129,5 +132,10 @@ public class AStar : MonoBehaviour
 
         return validNodeNeighbors;
     }
+
+    public void SetSourceX(int x) {  source.currentTile.currentPos.x = x; }
+    public void SetSourceY(int y) { source.currentTile.currentPos.y = y; }
+    public void SetDesX(int x) { des.currentTile.currentPos.x = x; }
+    public void SetDesY(int y) { des.currentTile.currentPos.y = y; }
 
 }
