@@ -20,14 +20,14 @@ public class AStar : MonoBehaviour
 
         Data.PriorityQueue<float, Node> frontier; // to store next ones to visit
         HashSet<Vector2> frontierSet; //what positions are already found
-        Dictionary<Node, bool> visited; // use .at() to get data, if the element dont exist [] will give you wrong results
+        Dictionary<Tile, bool> visited; // use .at() to get data, if the element dont exist [] will give you wrong results
         List<Node> path;
 
         // bootstrap
         Node t = new Node();
         frontier = new Data.PriorityQueue<float, Node>();
         frontierSet = new HashSet<Vector2>();
-        visited = new Dictionary<Node, bool> ();
+        visited = new Dictionary<Tile, bool> ();
         cameFrom = new Dictionary<Node, Node> ();
 
         Node catPos = source;
@@ -56,9 +56,9 @@ public class AStar : MonoBehaviour
             }
 
             // mark current as visited
-            visited[current] = true;
+            visited[current.currentTile] = true;
             // getVisitableNeighbors(world, current) returns a vector of neighbors that are not visited, not cat, not block, not in the queue
-            List<Node> neigh = getVisitableNeighbors(current, frontierSet);
+            List<Node> neigh = getVisitableNeighbors(current, frontierSet, visited);
             // iterate over the neighs:
             foreach(Node node in neigh)
             {
@@ -76,7 +76,7 @@ public class AStar : MonoBehaviour
                     frontier.Enqueue(node.costSoFar, node);
                     frontierSet.Add(node.currentTile.currentPos);
 
-                    visited[node] = true;
+                    visited[node.currentTile] = true;
                     // do this up to find a visitable border and break the loop
                 }
             }
@@ -99,38 +99,27 @@ public class AStar : MonoBehaviour
     }
 
     //assumes that we only have walls, if we make more comprehensive weights we will also need to change this accordingly
-    public List<Node> getVisitableNeighbors(Node current, HashSet<Vector2> existingSet)
+    public List<Node> getVisitableNeighbors(Node current, HashSet<Vector2> frontierSet, Dictionary<Tile, bool> visited)
     {
         List<Tile> validTileNeighbors = current.currentTile.GetNeighbors();
         List<Node> validNodeNeighbors = new List<Node>();
 
-        //north
-        Node north = new Node();
-        north.InitNode(validTileNeighbors[0], current.costSoFar + 1);
-        if(north.currentTile.GetWeight() == 0 && !existingSet.Contains(north.currentTile.currentPos)) 
+        Node temp = new Node();
+        foreach (Tile neighbor in validTileNeighbors)
         {
-            validNodeNeighbors.Add(north);
-        }
-        //east
-        Node east = new Node();
-        east.InitNode(validTileNeighbors[1], current.costSoFar + 1);
-        if (east.currentTile.GetWeight() == 0 && !existingSet.Contains(east.currentTile.currentPos))
-        {
-            validNodeNeighbors.Add(east);
-        }
-        //south
-        Node south = new Node();
-        south.InitNode(validTileNeighbors[2], current.costSoFar + 1);
-        if (south.currentTile.GetWeight() == 0 && !existingSet.Contains(south.currentTile.currentPos))
-        {
-            validNodeNeighbors.Add(south);
-        }
-        //west
-        Node west = new Node();
-        west.InitNode(validTileNeighbors[3], current.costSoFar + 1);
-        if (west.currentTile.GetWeight() == 0 && !existingSet.Contains(west.currentTile.currentPos))
-        {
-            validNodeNeighbors.Add(west);
+            temp.InitNode(neighbor, current.costSoFar + 1);
+            if (visited.ContainsKey(temp.currentTile))
+            {
+                if (temp.currentTile.GetWeight() == 0 && !frontierSet.Contains(temp.currentTile.currentPos) && !visited[temp.currentTile])
+                {
+                    validNodeNeighbors.Add(temp);
+                }
+            }
+            else if (temp.currentTile.GetWeight() == 0 && !frontierSet.Contains(temp.currentTile.currentPos))
+            {
+                validNodeNeighbors.Add(temp);
+            }
+            validNodeNeighbors.Add(temp);
         }
 
         return validNodeNeighbors;
