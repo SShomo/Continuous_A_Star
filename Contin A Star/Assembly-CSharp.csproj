@@ -55,15 +55,42 @@
     <UnityVersion>2022.3.18f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.18f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.18f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue Example\Program.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue Benchmarks\Program.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue Unity Full\Properties\AssemblyInfo.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue\StablePriorityQueue.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue Tests\SharedStablePriorityQueueTests.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue Tests\Properties\AssemblyInfo.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue Unity Subset\Properties\AssemblyInfo.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue Example\FastPriorityQueueExample.cs" />
     <Compile Include="Assets\Scripts\KD Tree.cs" />
     <Compile Include="Assets\Scripts\Tile.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue Example\Properties\AssemblyInfo.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue\IPriorityQueue.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue\Properties\AssemblyInfo.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue Tests\SharedPriorityQueueTests.cs" />
     <Compile Include="Assets\Scripts\Node.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue\SimplePriorityQueue.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue Tests\SharedFastPriorityQueueTests.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue PCL\Properties\AssemblyInfo.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue\FastPriorityQueueNode.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue\IFixedSizePriorityQueue.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue Tests\StablePriorityQueueTests.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue\GenericPriorityQueueNode.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue Benchmarks\Benchmarks.cs" />
     <Compile Include="Assets\Scripts\TileManager.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue Benchmarks\Properties\AssemblyInfo.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue Tests\SimplePriorityQueueTests.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue\FastPriorityQueue.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue\StablePriorityQueueNode.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue Tests\FastPriorityQueueTests.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue Example\SimplePriorityQueueExample.cs" />
+    <Compile Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\Priority Queue\GenericPriorityQueue.cs" />
     <Compile Include="Assets\Scripts\AStar.cs" />
     <Compile Include="Assets\Scripts\MakeWall.cs" />
   </ItemGroup>
@@ -82,6 +109,7 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\High-Speed-Priority-Queue-for-C-Sharp-master\LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />

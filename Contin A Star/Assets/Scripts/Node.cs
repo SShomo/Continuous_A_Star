@@ -5,6 +5,7 @@ using UnityEngine;
 public class Node : MonoBehaviour
 {
     public Tile currentTile;
+    public int costSoFar = 0;
 
     void Start()
     {
