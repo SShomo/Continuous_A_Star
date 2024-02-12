@@ -10,9 +10,12 @@ using Vector2 = UnityEngine.Vector2;
 
 public class AStar : MonoBehaviour
 {
+    TextFields textFeild;
 
-    Node source = new Node();
-    Node des = new Node();
+    private void Start()
+    {
+        textFeild = GetComponent<TextFields>();
+    }
 
     public List<Node> generatePath()
     {
@@ -30,14 +33,14 @@ public class AStar : MonoBehaviour
         visited = new Dictionary<Tile, bool> ();
         cameFrom = new Dictionary<Node, Node> ();
 
-        Node catPos = source;
+        Node catPos = textFeild.source;
         t.currentTile = catPos.currentTile;
         t.costSoFar = 0;
         path = new List<Node> ();
 
         frontier.Enqueue(t.costSoFar, t);
         frontierSet.Add(t.currentTile.currentPos);
-        Node borderExit = des; // if at the end of the loop we dont find a border, we have to return random points
+        Node borderExit = textFeild.des; // if at the end of the loop we dont find a border, we have to return random points
 
         Node current = new Node();
         while (frontier.Count != 0)
@@ -49,7 +52,7 @@ public class AStar : MonoBehaviour
             frontierSet.Remove(current.currentTile.currentPos);
 
             // remove the current from frontierset
-            if (source.currentTile.currentPos == current.currentTile.currentPos)
+            if (textFeild.source.currentTile.currentPos == current.currentTile.currentPos)
             {
                 borderExit = current;
                 break;
@@ -82,13 +85,13 @@ public class AStar : MonoBehaviour
             }
         }
         // if the border is not infinity, build the path from border to the cat using the camefrom map
-        if (borderExit.currentTile.currentPos == des.currentTile.currentPos)
+        if (borderExit.currentTile.currentPos == textFeild.des.currentTile.currentPos)
         {
             return path;
         }
 
         Node current2 = borderExit;
-        while (current2 != catPos)
+        while (current2.currentTile != catPos.currentTile)
         {
             path.Add(current2);
             current2 = cameFrom[current2];
@@ -124,10 +127,4 @@ public class AStar : MonoBehaviour
 
         return validNodeNeighbors;
     }
-
-    public void SetSourceX(int x) {  source.currentTile.currentPos.x = x; }
-    public void SetSourceY(int y) { source.currentTile.currentPos.y = y; }
-    public void SetDesX(int x) { des.currentTile.currentPos.x = x; }
-    public void SetDesY(int y) { des.currentTile.currentPos.y = y; }
-
 }

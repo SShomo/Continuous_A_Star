@@ -30,6 +30,10 @@ public class TileManager : MonoBehaviour
 
         return map[(tilePos.x, tilePos.y)];
     }
+    public Tile GetTile(float x, float y)
+    {
+        return GetTile(new Vector2(x,y));
+    }
 
     public void ToggleWall(Vector2 vec)
     {
