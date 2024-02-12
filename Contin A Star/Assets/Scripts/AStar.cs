@@ -16,16 +16,14 @@ public class AStar : MonoBehaviour
         Dictionary<Node, Node> cameFrom; // to build the flowfield and build the path
 
         Data.PriorityQueue<float, Node> frontier; // to store next ones to visit
-        HashSet<Node> frontierSet; // OPTIMIZATION to check faster if a point is in the queue
-        HashSet<Vector2> posSet; //what positions are already found
+        HashSet<Vector2> frontierSet; //what positions are already found
         Dictionary<Node, bool> visited; // use .at() to get data, if the element dont exist [] will give you wrong results
         List<Node> path;
 
         // bootstrap
         Node t = new Node();
         frontier = new Data.PriorityQueue<float, Node>();
-        frontierSet = new HashSet<Node> ();
-        posSet = new HashSet<Vector2>();
+        frontierSet = new HashSet<Vector2>();
         visited = new Dictionary<Node, bool> ();
         cameFrom = new Dictionary<Node, Node> ();
 
@@ -35,8 +33,7 @@ public class AStar : MonoBehaviour
         path = new List<Node> ();
 
         frontier.Enqueue(t.costSoFar, t);
-        frontierSet.Add(catPos);
-        posSet.Add(t.currentTile.currentPos);
+        frontierSet.Add(t.currentTile.currentPos);
         Node borderExit = des; // if at the end of the loop we dont find a border, we have to return random points
 
         Node current = new Node();
@@ -46,7 +43,7 @@ public class AStar : MonoBehaviour
             Node first = frontier.Dequeue();
             current.currentTile = first.currentTile;
             current.costSoFar = first.costSoFar;
-            frontierSet.Remove(current);
+            frontierSet.Remove(current.currentTile.currentPos);
 
             // remove the current from frontierset
             if (source.currentTile.currentPos == current.currentTile.currentPos)
@@ -58,11 +55,11 @@ public class AStar : MonoBehaviour
             // mark current as visited
             visited[current] = true;
             // getVisitableNeighbors(world, current) returns a vector of neighbors that are not visited, not cat, not block, not in the queue
-            List<Node> neigh = getVisitableNeighbors(current, posSet);
+            List<Node> neigh = getVisitableNeighbors(current, frontierSet);
             // iterate over the neighs:
             foreach(Node node in neigh)
             {
-                if (frontierSet.Contains(node) == frontierSet.Last())
+                if (frontierSet.Contains(node.currentTile.currentPos) == frontierSet.Last())
                 {
                     //int e = cost
                     //if(frontierSet.find(var))
@@ -71,8 +68,7 @@ public class AStar : MonoBehaviour
 
                     //if(frontierSet.find(var))
                     frontier.Enqueue(node.costSoFar, node);
-                    frontierSet.Add(node);
-                    posSet.Add(node.currentTile.currentPos);
+                    frontierSet.Add(node.currentTile.currentPos);
 
                     visited[node] = true;
                     // do this up to find a visitable border and break the loop
