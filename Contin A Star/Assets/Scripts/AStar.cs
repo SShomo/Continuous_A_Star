@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Unity.Collections.LowLevel.Unsafe;
-using Priority_Queue;
 using UnityEngine;
 
 
@@ -15,14 +14,14 @@ public class AStar : MonoBehaviour
     {
         Dictionary<Node, Node> cameFrom; // to build the flowfield and build the path
 
-        SimplePriorityQueue<Node, List<Node>> frontier; // to store next ones to visit
+        Data.PriorityQueue<float, Node> frontier; // to store next ones to visit
         HashSet<Node> frontierSet; // OPTIMIZATION to check faster if a point is in the queue
         Dictionary<Node, bool> visited; // use .at() to get data, if the element dont exist [] will give you wrong results
         List<Node> path;
 
         // bootstrap
         Node t = new Node();
-        frontier = new SimplePriorityQueue<Node, List<Node>>();
+        frontier = new Data.PriorityQueue<float, Node>();
         frontierSet = new HashSet<Node> ();
         visited = new Dictionary<Node, bool> ();
         cameFrom = new Dictionary<Node, Node> ();
