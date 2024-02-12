@@ -29,6 +29,22 @@ public class Tile
         return false;
     }
 
+    public List<Tile> GetNeighbors() 
+    {
+        List<Tile> returnList = new List<Tile>();
+
+        //north
+        returnList.Add(TileManager.instance.GetTile(currentPos + Vector2.up));
+        //east
+        returnList.Add(TileManager.instance.GetTile(currentPos + Vector2.right));
+        //south
+        returnList.Add(TileManager.instance.GetTile(currentPos + Vector2.down));
+        //west
+        returnList.Add(TileManager.instance.GetTile(currentPos + Vector2.left));
+
+        return returnList;
+    }
+
     public int GetWeight() { return weight; }
     public void SetWeight(int v) { weight = v; }
 }

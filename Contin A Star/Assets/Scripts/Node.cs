@@ -16,4 +16,10 @@ public class Node : MonoBehaviour
     {
         currentTile = TileManager.instance.GetTile(transform.position);
     }
+
+    public void InitNode(Tile currentTile, int costSoFar)
+    {
+        this.currentTile = currentTile;
+        this.costSoFar = costSoFar;
+    }
 }
