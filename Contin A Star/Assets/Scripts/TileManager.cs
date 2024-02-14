@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TileManager : MonoBehaviour
 {
     public static TileManager instance;
+    [SerializeField] private ShowTiles showTiles;
     private Dictionary<(float, float), Tile> map;
     void Start()
     {
@@ -17,6 +18,13 @@ public class TileManager : MonoBehaviour
             Destroy(this.gameObject);
         if(map == null)
             map = new Dictionary<(float, float), Tile>();
+
+        if(showTiles == null)
+        {
+            showTiles = GetComponent<ShowTiles>();
+        }
+        showTiles.ShowAllTiles();
+
     }
 
     public Tile GetTile(Vector2 vec)
@@ -26,6 +34,7 @@ public class TileManager : MonoBehaviour
         if (!map.ContainsKey((tilePos.x, tilePos.y)))
         {
             map.Add((tilePos.x, tilePos.y), CreateTile(tilePos));
+            showTiles.ShowTile(map[(tilePos.x, tilePos.y)]);
         }
 
         return map[(tilePos.x, tilePos.y)];
@@ -75,4 +84,6 @@ public class TileManager : MonoBehaviour
 
         return floor;
     }
+
+    public Dictionary<(float, float), Tile> getMap() { return map; }
 }

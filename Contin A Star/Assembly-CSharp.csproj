@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\ShowPath.cs" />
     <Compile Include="Assets\Scripts\KD Tree.cs" />
+    <Compile Include="Assets\Scripts\ShowTiles.cs" />
     <Compile Include="Assets\Scripts\Tile.cs" />
     <Compile Include="Assets\Scripts\Node.cs" />
     <Compile Include="Assets\Scripts\TextFields.cs" />
