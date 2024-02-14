@@ -67,10 +67,10 @@ public class AStar : MonoBehaviour
             // iterate over the neighs:
             foreach(Node node in neigh)
             {
-                Vector2 returnVec;
-                frontierSet.TryGetValue(node.currentTile.currentPos, out returnVec);
+                //Vector2 returnVec;
+                //frontierSet.TryGetValue(node.currentTile.currentPos, out returnVec);
                 //this is never true
-                if (returnVec == frontierSet.Last())
+                if (!frontierSet.Contains(node.currentTile.currentPos))
                 {
                     //int e = cost
                     
