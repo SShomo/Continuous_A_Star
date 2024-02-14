@@ -27,6 +27,12 @@ public class TileManager : MonoBehaviour
 
     }
 
+    public void SetGoals(Tile source, Tile destination)
+    {
+        showTiles.ChangeColor(source, Color.green);
+        showTiles.ChangeColor(destination, Color.red);
+    }
+
     public Tile GetTile(Vector2 vec)
     {
         Vector2 tilePos = VecToTilePos(vec);
@@ -34,7 +40,6 @@ public class TileManager : MonoBehaviour
         if (!map.ContainsKey((tilePos.x, tilePos.y)))
         {
             map.Add((tilePos.x, tilePos.y), CreateTile(tilePos));
-            showTiles.ShowTile(map[(tilePos.x, tilePos.y)]);
         }
 
         return map[(tilePos.x, tilePos.y)];

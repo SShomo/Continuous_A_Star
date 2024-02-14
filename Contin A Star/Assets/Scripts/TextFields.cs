@@ -44,5 +44,7 @@ public class TextFields : MonoBehaviour
             source.currentTile = TileManager.instance.GetTile(0, 0);
             des.currentTile = TileManager.instance.GetTile(5, 5);
         }
+
+        TileManager.instance.SetGoals(source.currentTile, des.currentTile);
     }
 }

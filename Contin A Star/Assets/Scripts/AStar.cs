@@ -70,7 +70,7 @@ public class AStar : MonoBehaviour
                 Vector2 returnVec;
                 frontierSet.TryGetValue(node.currentTile.currentPos, out returnVec);
                 //this is never true
-                if (frontierSet.Count != 0 && returnVec == frontierSet.Last())
+                if (returnVec == frontierSet.Last())
                 {
                     //int e = cost
                     
