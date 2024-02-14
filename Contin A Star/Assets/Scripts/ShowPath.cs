@@ -11,6 +11,7 @@ public class ShowPath : MonoBehaviour
 
     public bool ran = false;
 
+    public void RunAStar() { ran = true; Debug.Log("jjjj"); }
     private void Start()
     {
         lineRenderer = gameObject.AddComponent<LineRenderer>();
