@@ -27,6 +27,11 @@ public class ShowTiles : MonoBehaviour
         tileObj.transform.position = tile.currentPos;
         SpriteRenderer tileRenderer = tileObj.AddComponent<SpriteRenderer>();
         tileRenderer.sprite = tileSprite;
+
+        if(tile.GetWeight() > 0)
+        {
+            tileRenderer.color = Color.black;
+        }
     }
 
     private void ShowTileInit()
