@@ -69,6 +69,7 @@ public class AStar : MonoBehaviour
             {
                 Vector2 returnVec;
                 frontierSet.TryGetValue(node.currentTile.currentPos, out returnVec);
+                //this is never true
                 if (frontierSet.Count != 0 && returnVec == frontierSet.Last())
                 {
                     //int e = cost
@@ -109,9 +110,9 @@ public class AStar : MonoBehaviour
         List<Tile> validTileNeighbors = current.currentTile.GetNeighbors();
         List<Node> validNodeNeighbors = new List<Node>();
 
-        Node temp = new Node();
         foreach (Tile neighbor in validTileNeighbors)
         {
+            Node temp = new Node();
             temp.InitNode(neighbor, current.costSoFar + 1);
             if (visited.ContainsKey(temp.currentTile))
             {
@@ -124,7 +125,6 @@ public class AStar : MonoBehaviour
             {
                 validNodeNeighbors.Add(temp);
             }
-            validNodeNeighbors.Add(temp);
         }
 
         return validNodeNeighbors;
