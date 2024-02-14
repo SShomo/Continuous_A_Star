@@ -20,7 +20,7 @@ public class ShowPath : MonoBehaviour
     {
         if (aStar != null && !ran)
         {
-            List<Node> path = aStar.generatePath();
+            List<Tile> path = aStar.generatePath();
 
             lineRenderer.positionCount = path.Count;
             lineRenderer.widthMultiplier = 0.2f;
@@ -31,10 +31,15 @@ public class ShowPath : MonoBehaviour
             {
                 GameObject NodeObject = new GameObject("node" + i);
                 NodeObject.transform.parent = transform;
-                NodeObject.transform.position = path[i].currentTile.currentPos;
-                NodeObject.AddComponent<SpriteRenderer>().sprite = nodeSprite;
+                NodeObject.transform.position = path[i].currentPos;
+                SpriteRenderer sr = NodeObject.AddComponent<SpriteRenderer>();
+                sr.sprite = nodeSprite;
+                sr.color = Color.yellow;
+                
 
                 lineRenderer.SetPosition(i, NodeObject.transform.position);
+                lineRenderer.startColor = Color.blue;
+                lineRenderer.endColor = Color.blue;
             }
 
             ran = true;
