@@ -14,7 +14,7 @@ public class MakeWall : MonoBehaviour
             vec = Camera.main.ScreenToWorldPoint(mousePos);
             TileManager.instance.ToggleWall(vec);
 
-            Debug.Log(TileManager.instance.GetTile(vec).GetWeight());
+            //Debug.Log(TileManager.instance.GetTile(vec).GetWeight());
         }
     }
 }

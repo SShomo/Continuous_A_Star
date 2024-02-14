@@ -5,16 +5,17 @@ using System.Numerics;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.ParticleSystem;
 using Vector2 = UnityEngine.Vector2;
 
 
 public class AStar : MonoBehaviour
 {
-    TextFields textFeild;
+    TextFields textField;
 
     private void Start()
     {
-        textFeild = GetComponent<TextFields>();
+        textField = GetComponent<TextFields>();
     }
 
     public List<Node> generatePath()
@@ -32,15 +33,16 @@ public class AStar : MonoBehaviour
         frontierSet = new HashSet<Vector2>();
         visited = new Dictionary<Tile, bool> ();
         cameFrom = new Dictionary<Node, Node> ();
+        path = new List<Node> ();
 
-        Node catPos = textFeild.source;
+        Node catPos = textField.source;
         t.currentTile = catPos.currentTile;
         t.costSoFar = 0;
-        path = new List<Node> ();
+
 
         frontier.Enqueue(t.costSoFar, t);
         frontierSet.Add(t.currentTile.currentPos);
-        Node borderExit = textFeild.des; // if at the end of the loop we dont find a border, we have to return random points
+        Node borderExit = textField.des; // if at the end of the loop we dont find a border, we have to return random points
 
         Node current = new Node();
         while (frontier.Count != 0)
@@ -52,7 +54,7 @@ public class AStar : MonoBehaviour
             frontierSet.Remove(current.currentTile.currentPos);
 
             // remove the current from frontierset
-            if (textFeild.source.currentTile.currentPos == current.currentTile.currentPos)
+            if (textField.des.currentTile.currentPos == current.currentTile.currentPos)
             {
                 borderExit = current;
                 break;
@@ -67,7 +69,7 @@ public class AStar : MonoBehaviour
             {
                 Vector2 returnVec;
                 frontierSet.TryGetValue(node.currentTile.currentPos, out returnVec);
-                if (returnVec == frontierSet.Last())
+                if (frontierSet.Count != 0 && returnVec == frontierSet.Last())
                 {
                     //int e = cost
                     
@@ -85,7 +87,7 @@ public class AStar : MonoBehaviour
             }
         }
         // if the border is not infinity, build the path from border to the cat using the camefrom map
-        if (borderExit.currentTile.currentPos == textFeild.des.currentTile.currentPos)
+        if (borderExit.currentTile.currentPos == textField.des.currentTile.currentPos)
         {
             return path;
         }

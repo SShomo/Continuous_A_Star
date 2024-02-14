@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class ShowPath : MonoBehaviour
@@ -8,14 +9,17 @@ public class ShowPath : MonoBehaviour
     public LineRenderer lineRenderer;
     [SerializeField] private Sprite nodeSprite;
 
-    public bool ran = true;
+    public bool ran = false;
+
+    private void Start()
+    {
+        lineRenderer = gameObject.AddComponent<LineRenderer>();
+    }
 
     private void Update()
     {
-        if(aStar != null && !ran)
+        if (aStar != null && !ran)
         {
-            lineRenderer = gameObject.AddComponent<LineRenderer>();
-
             List<Node> path = aStar.generatePath();
 
             lineRenderer.positionCount = path.Count;
