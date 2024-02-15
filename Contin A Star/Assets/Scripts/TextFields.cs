@@ -7,11 +7,8 @@ using static Unity.VisualScripting.Member;
 
 public class TextFields : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI xSource;
-    [SerializeField] private TextMeshProUGUI ySource;
-    [SerializeField] private TextMeshProUGUI xDes;
-    [SerializeField] private TextMeshProUGUI yDes;
-
+    private static GameObject sourceGameObject; 
+    private static GameObject desGameObject;
 
     public static Node source = null;
     public static Node des = null;
@@ -24,35 +21,34 @@ public class TextFields : MonoBehaviour
 
     private void Start()
     {
-        GameObject sourceGameObject = new GameObject("source");
+        sourceGameObject = new GameObject("source");
+        desGameObject = new GameObject("des");
+
         sourceGameObject.transform.parent = transform;
         source = sourceGameObject.AddComponent<Node>();
         source.currentTile = TileManager.instance.GetTile(0, 0);
         sourceGameObject.transform.position = new Vector2(0,0);
 
-        GameObject desGameObject = new GameObject("des");
+        
         desGameObject.transform.parent = transform;
         des = desGameObject.AddComponent<Node>();
         des.currentTile = TileManager.instance.GetTile(5, 5);
         desGameObject.transform.position = new Vector2(5, 5);
-
-
-        source.currentTile = TileManager.instance.GetTile(0, 0);
-        des.currentTile = TileManager.instance.GetTile(5, 5);
     }
     private void Update()
     {
-        try
-        {
-            source.currentTile = TileManager.instance.GetTile(float.Parse(xSource.text), float.Parse(ySource.text));
-
-            des.currentTile = TileManager.instance.GetTile(float.Parse(xDes.text), float.Parse(yDes.text));
-
-        }
-        catch
-        {
-        }
-
+        Debug.Log(source.currentTile.currentPos);
         TileManager.instance.SetGoals(source.currentTile, des.currentTile);
+    }
+
+    public static void ChangeSource(Tile tile)
+    {
+        sourceGameObject.transform.position = tile.currentPos;
+        source.currentTile = tile;
+    }
+    public static void ChangeDes(Tile tile)
+    {
+        desGameObject.transform.position = tile.currentPos;
+        des.currentTile = tile;
     }
 }

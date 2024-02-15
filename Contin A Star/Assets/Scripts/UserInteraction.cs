@@ -13,6 +13,8 @@ public class UserInteraction : MonoBehaviour
     public float mapGrowUp;
     public float mapGrowRight;
     private Vector3 startPos;
+    private Tile newSource;
+    private Tile newDes;
 
     private void Start()
     {
@@ -28,18 +30,19 @@ public class UserInteraction : MonoBehaviour
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = Camera.main.nearClipPlane;
             
-            Tile newSource = TileManager.instance.GetTile(Camera.main.ScreenToWorldPoint(mousePos));
+            newSource = TileManager.instance.GetTile(Camera.main.ScreenToWorldPoint(mousePos));
 
-            TextFields.source.currentTile = newSource;
+            TextFields.ChangeSource(newSource);
+            Debug.Log(newSource.currentPos);
         }
         else if (Input.GetMouseButtonDown(1))
         {
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = Camera.main.nearClipPlane;
 
-            Tile newDes = TileManager.instance.GetTile(Camera.main.ScreenToWorldPoint(mousePos));
+            newDes = TileManager.instance.GetTile(Camera.main.ScreenToWorldPoint(mousePos));
 
-            TextFields.des.currentTile = newDes;
+            TextFields.ChangeDes(newDes);
         }
         else if (Input.GetMouseButtonDown(2))
         {
