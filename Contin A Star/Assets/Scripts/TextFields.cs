@@ -16,6 +16,12 @@ public class TextFields : MonoBehaviour
     public Node source = null;
     public Node des = null;
 
+    public void ResetPos()
+    {
+        source.currentTile = TileManager.instance.GetTile(0, 0);
+        des.currentTile = TileManager.instance.GetTile(5, 5);
+    }
+
     private void Start()
     {
         GameObject sourceGameObject = new GameObject("source");
