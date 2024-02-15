@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class ShowPath : MonoBehaviour
 {
     public AStar aStar;
     public LineRenderer lineRenderer;
+    public Spline spline;
     [SerializeField] private Sprite nodeSprite;
 
     public bool ran = false;
@@ -37,6 +39,7 @@ public class ShowPath : MonoBehaviour
             sr.sprite = nodeSprite;
             sr.color = Color.blue;
 
+            spline.InsertPointAt(i, NodeObject.transform.position);
 
             lineRenderer.SetPosition(i, NodeObject.transform.position);
             lineRenderer.startColor = Color.blue;
