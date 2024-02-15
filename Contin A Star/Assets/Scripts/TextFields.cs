@@ -35,6 +35,10 @@ public class TextFields : MonoBehaviour
         des = desGameObject.AddComponent<Node>();
         des.currentTile = TileManager.instance.GetTile(5, 5);
         desGameObject.transform.position = new Vector2(5, 5);
+
+
+        source.currentTile = TileManager.instance.GetTile(0, 0);
+        des.currentTile = TileManager.instance.GetTile(5, 5);
     }
     private void Update()
     {
@@ -47,8 +51,6 @@ public class TextFields : MonoBehaviour
         }
         catch
         {
-            source.currentTile = TileManager.instance.GetTile(0, 0);
-            des.currentTile = TileManager.instance.GetTile(5, 5);
         }
 
         TileManager.instance.SetGoals(source.currentTile, des.currentTile);

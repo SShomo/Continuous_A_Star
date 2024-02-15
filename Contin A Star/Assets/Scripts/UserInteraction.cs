@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UserInteraction : MonoBehaviour
 {
+    [SerializeField] private TextFields textField;
     [SerializeField] private ShowTiles show;
     [SerializeField] private float moveSpeed;
     private float origSpeed = 0.01f;
@@ -17,6 +19,45 @@ public class UserInteraction : MonoBehaviour
         origSpeed = moveSpeed;
         runSpeed = origSpeed * 3;
         startPos = transform.position;
+    }
+
+    private void Update()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = Camera.main.nearClipPlane;
+            
+            Tile newSource = TileManager.instance.GetTile(Camera.main.ScreenToWorldPoint(mousePos));
+
+            TextFields.source.currentTile = newSource;
+        }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = Camera.main.nearClipPlane;
+
+            Tile newDes = TileManager.instance.GetTile(Camera.main.ScreenToWorldPoint(mousePos));
+
+            TextFields.des.currentTile = newDes;
+        }
+        else if (Input.GetMouseButtonDown(2))
+        {
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = Camera.main.nearClipPlane;
+
+            Tile wall = TileManager.instance.GetTile(Camera.main.ScreenToWorldPoint(mousePos));
+
+            if(wall.GetWeight() > 0)
+            {
+                wall.SetWeight(0);
+            }
+            else
+            {
+                wall.SetWeight(1);
+            }
+
+        }
     }
 
     private void FixedUpdate()

@@ -983,11 +983,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee018e5e976ab5744b653cdf862e601a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textField: {fileID: 921586540}
   show: {fileID: 876605766}
   moveSpeed: 0.1
   mapGrowUp: 0
   mapGrowRight: 0
-  add: 0
 --- !u!1 &835944597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,6 +1509,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aStar: {fileID: 921586538}
   lineRenderer: {fileID: 0}
+  spline:
+    m_IsOpenEnded: 0
+    m_ControlPoints: []
   nodeSprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   ran: 1
 --- !u!1 &1200464615

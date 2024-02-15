@@ -108,6 +108,9 @@ public class AStar : MonoBehaviour
             Debug.Log(current2.currentPos);
             if(wf > 1000){ break; }
         }
+
+        path.Add(TextFields.source.currentTile);
+
         return path;
         // if your vector is filled from the border to the cat, the first element is the catcher move, and the last element is the cat move
     }
