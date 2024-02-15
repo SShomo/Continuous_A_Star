@@ -66,7 +66,7 @@ public class ShowTiles : MonoBehaviour
         }
         for (int x = -mapSize.x / 2; x < mapSize.x - mapSize.x / 2; x++)
         {
-            Tile test = TileManager.instance.GetTile(x, (mapSize.y / 2));
+            Tile test = TileManager.instance.GetTile(x, (mapSize.y / 2)-1);
             ShowTile(test);
         }
     }
@@ -80,7 +80,7 @@ public class ShowTiles : MonoBehaviour
         }
         for (int y = -mapSize.y / 2; y < mapSize.y - mapSize.y/2; y++)
         {
-            Tile test = TileManager.instance.GetTile((mapSize.x / 2), y);
+            Tile test = TileManager.instance.GetTile((mapSize.x / 2)- 1, y);
             ShowTile(test);
         }
     }
