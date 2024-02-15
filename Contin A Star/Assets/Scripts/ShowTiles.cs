@@ -6,11 +6,12 @@ public class ShowTiles : MonoBehaviour
 {
     public Dictionary<(float, float), SpriteRenderer> tileRenderers;
     [SerializeField] private Sprite tileSprite;
-    [SerializeField] private Vector2Int mapStartSize;
+    [SerializeField] private Vector2Int mapSize;
     [SerializeField] private Vector2Int mapStartOffset;
 
     public void ShowAllTiles()
     {
+        mapStartOffset = -mapSize/ 2;
         if(tileRenderers == null)
             tileRenderers = new Dictionary<(float, float), SpriteRenderer>();
         ShowTileInit();
@@ -46,14 +47,41 @@ public class ShowTiles : MonoBehaviour
 
     private void ShowTileInit()
     {
-        for(int y = mapStartOffset.y;  y < mapStartSize.y; y++)
+        for(int y = mapStartOffset.y;  y < mapSize.y + mapStartOffset.y; y++)
         {
-            for(int x = mapStartOffset.x; x < mapStartSize.x; x++)
+            for(int x = mapStartOffset.x; x < mapSize.x + mapStartOffset.x; x++)
             {
                 Tile test = TileManager.instance.GetTile(x, y);
-                if (x == 1 && y == 1)
-                    test.SetWeight(1);
             }
+        }
+    }
+    
+    public void ShowTileY()
+    {
+        mapSize.y += 2;
+        for(int x = -mapSize.x/2;  x < mapSize.x - mapSize.x / 2; x++)
+        {
+            Tile test = TileManager.instance.GetTile(x, -((mapSize.y/2)));
+            ShowTile(test);
+        }
+        for (int x = -mapSize.x / 2; x < mapSize.x - mapSize.x / 2; x++)
+        {
+            Tile test = TileManager.instance.GetTile(x, (mapSize.y / 2));
+            ShowTile(test);
+        }
+    }
+    public void ShowTileX()
+    {
+        mapSize.x += 2;
+        for (int y = -mapSize.y / 2; y < mapSize.y - mapSize.y/2; y++)
+        {
+            Tile test = TileManager.instance.GetTile(-((mapSize.x / 2)), y);
+            ShowTile(test);
+        }
+        for (int y = -mapSize.y / 2; y < mapSize.y - mapSize.y/2; y++)
+        {
+            Tile test = TileManager.instance.GetTile((mapSize.x / 2), y);
+            ShowTile(test);
         }
     }
 }
