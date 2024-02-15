@@ -26,6 +26,8 @@ public class ShowTiles : MonoBehaviour
     public void ChangeColor(Tile tile, Color color)
     {
         tileRenderers[(tile.currentPos.x, tile.currentPos.y)].color = color;
+
+        Debug.Log(tile.currentPos + "\t " + tileRenderers[(tile.currentPos.x, tile.currentPos.y)].color);
     }
 
     public void ShowTile(Tile tile)

@@ -30,7 +30,12 @@ public class UserInteraction : MonoBehaviour
             
             Tile newSource = TileManager.instance.GetTile(Camera.main.ScreenToWorldPoint(mousePos));
 
+            Tile oldTile = TileManager.instance.GetTile(TextFields.source.currentTile.currentPos.x, TextFields.source.currentTile.currentPos.y);
+
             TextFields.source.currentTile = newSource;
+
+            show.ChangeColor(oldTile, Color.white);
+
         }
         else if (Input.GetMouseButtonDown(1))
         {
@@ -39,7 +44,10 @@ public class UserInteraction : MonoBehaviour
 
             Tile newDes = TileManager.instance.GetTile(Camera.main.ScreenToWorldPoint(mousePos));
 
+            Tile oldTile = TileManager.instance.GetTile(TextFields.des.currentTile.currentPos.x, TextFields.des.currentTile.currentPos.y);
+
             TextFields.des.currentTile = newDes;
+            show.ChangeColor(oldTile, Color.white);
         }
         else if (Input.GetMouseButtonDown(2))
         {
@@ -51,10 +59,12 @@ public class UserInteraction : MonoBehaviour
             if(wall.GetWeight() > 0)
             {
                 wall.SetWeight(0);
+                show.ChangeColor(wall, Color.white);
             }
             else
             {
                 wall.SetWeight(1);
+                show.ChangeColor(wall, Color.black);
             }
 
         }
