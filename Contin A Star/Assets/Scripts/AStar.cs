@@ -35,14 +35,14 @@ public class AStar : MonoBehaviour
         cameFrom = new Dictionary<Tile, Tile> ();
         path = new List<Tile> ();
 
-        Node catPos = textField.source;
+        Node catPos = TextFields.source;
         t.currentTile = catPos.currentTile;
         t.costSoFar = 0;
 
 
         frontier.Enqueue(t.costSoFar, t);
         frontierSet.Add(t.currentTile.currentPos);
-        Vector2 desPos = textField.des.currentTile.currentPos; // if at the end of the loop we dont find a border, we have to return random points
+        Vector2 desPos = TextFields.des.currentTile.currentPos; // if at the end of the loop we dont find a border, we have to return random points
 
         Node current = new Node();
         bool found = false;
@@ -64,7 +64,7 @@ public class AStar : MonoBehaviour
             {
                 if (desPos == tile.currentPos)
                 {
-                    cameFrom[textField.des.currentTile] = current.currentTile;
+                    cameFrom[TextFields.des.currentTile] = current.currentTile;
                     found = true;
                     break;
                 }
@@ -99,8 +99,8 @@ public class AStar : MonoBehaviour
                 }
         */
         int wf = 0;
-        Tile current2 = textField.des.currentTile;
-        while (current2 != textField.source.currentTile)
+        Tile current2 = TextFields.des.currentTile;
+        while (current2 != TextFields.source.currentTile)
         {
             path.Add(current2);
             current2 = cameFrom[current2];

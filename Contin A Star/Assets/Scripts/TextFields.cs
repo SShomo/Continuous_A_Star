@@ -13,8 +13,8 @@ public class TextFields : MonoBehaviour
     [SerializeField] private TextMeshProUGUI yDes;
 
 
-    public Node source = null;
-    public Node des = null;
+    public static Node source = null;
+    public static Node des = null;
 
     public void ResetPos()
     {
