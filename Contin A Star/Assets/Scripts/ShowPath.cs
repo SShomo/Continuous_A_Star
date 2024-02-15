@@ -10,6 +10,7 @@ public class ShowPath : MonoBehaviour
     public LineRenderer lineRenderer;
     public Spline spline;
     [SerializeField] private Sprite nodeSprite;
+    private List<GameObject> nodes = new List<GameObject>();
 
     public bool ran = false;
     
@@ -24,10 +25,10 @@ public class ShowPath : MonoBehaviour
     public void RunAStar() {
         List<Tile> path = aStar.generatePath();
 
+        ResetPath();
+
         lineRenderer.positionCount = path.Count;
         lineRenderer.widthMultiplier = 0.2f;
-
-        Debug.Log(path.Count);
 
         for (int i = 0; i < path.Count; i++)
         {
@@ -38,12 +39,23 @@ public class ShowPath : MonoBehaviour
             SpriteRenderer sr = NodeObject.AddComponent<SpriteRenderer>();
             sr.sprite = nodeSprite;
             sr.color = Color.blue;
+            nodes.Add(NodeObject);
 
-            spline.InsertPointAt(i, NodeObject.transform.position);
+            //spline.InsertPointAt(i, NodeObject.transform.position);
 
             lineRenderer.SetPosition(i, NodeObject.transform.position);
             lineRenderer.startColor = Color.blue;
             lineRenderer.endColor = Color.blue;
         }
+    }
+
+    public void ResetPath()
+    {
+        foreach (GameObject n in nodes)
+        {
+            Destroy(n);
+        }
+        nodes.Clear();
+        lineRenderer.positionCount = 0;
     }
 }

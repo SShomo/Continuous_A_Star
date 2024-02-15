@@ -105,7 +105,6 @@ public class AStar : MonoBehaviour
             path.Add(current2);
             current2 = cameFrom[current2];
             wf++;
-            Debug.Log(current2.currentPos);
             if(wf > 1000){ break; }
         }
 

@@ -7,17 +7,12 @@ using static Unity.VisualScripting.Member;
 
 public class TextFields : MonoBehaviour
 {
+    public ShowTiles show;
     private static GameObject sourceGameObject; 
     private static GameObject desGameObject;
 
     public static Node source = null;
     public static Node des = null;
-
-    public void ResetPos()
-    {
-        source.currentTile = TileManager.instance.GetTile(0, 0);
-        des.currentTile = TileManager.instance.GetTile(5, 5);
-    }
 
     private void Start()
     {
@@ -37,7 +32,6 @@ public class TextFields : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(source.currentTile.currentPos);
         TileManager.instance.SetGoals(source.currentTile, des.currentTile);
     }
 
