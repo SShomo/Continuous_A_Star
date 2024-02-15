@@ -10,7 +10,15 @@ public class ShowPath : MonoBehaviour
     [SerializeField] private Sprite nodeSprite;
 
     public bool ran = false;
-
+    
+    private void Start()
+    {
+        GameObject lo = new GameObject();
+        lo.name = "gay";
+        lo.transform.parent = transform;
+        lo.transform.position -= Vector3.forward * 10f;
+        lineRenderer = lo.AddComponent<LineRenderer>();
+    }
     public void RunAStar() {
         List<Tile> path = aStar.generatePath();
 
@@ -23,49 +31,16 @@ public class ShowPath : MonoBehaviour
         {
             GameObject NodeObject = new GameObject("node" + i);
             NodeObject.transform.parent = transform;
-            NodeObject.transform.position = path[i].currentPos;
+            NodeObject.transform.position = new Vector3(path[i].currentPos.x, path[i].currentPos.y, (-20f));
+            NodeObject.transform.localScale *= 0.3f;
             SpriteRenderer sr = NodeObject.AddComponent<SpriteRenderer>();
             sr.sprite = nodeSprite;
-            sr.color = Color.yellow;
+            sr.color = Color.blue;
 
 
             lineRenderer.SetPosition(i, NodeObject.transform.position);
             lineRenderer.startColor = Color.blue;
             lineRenderer.endColor = Color.blue;
-        }
-    }
-    private void Start()
-    {
-        lineRenderer = gameObject.AddComponent<LineRenderer>();
-    }
-
-    private void Update()
-    {
-        if (aStar != null && !ran)
-        {
-            List<Tile> path = aStar.generatePath();
-
-            lineRenderer.positionCount = path.Count;
-            lineRenderer.widthMultiplier = 0.2f;
-
-            Debug.Log(path.Count);
-
-            for(int i = 0; i < path.Count; i++)
-            {
-                GameObject NodeObject = new GameObject("node" + i);
-                NodeObject.transform.parent = transform;
-                NodeObject.transform.position = path[i].currentPos;
-                SpriteRenderer sr = NodeObject.AddComponent<SpriteRenderer>();
-                sr.sprite = nodeSprite;
-                sr.color = Color.yellow;
-                
-
-                lineRenderer.SetPosition(i, NodeObject.transform.position);
-                lineRenderer.startColor = Color.blue;
-                lineRenderer.endColor = Color.blue;
-            }
-
-            ran = true;
         }
     }
 }
